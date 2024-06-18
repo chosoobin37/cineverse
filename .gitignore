@@ -1,3 +1,4 @@
+.gradle/buildOutputCleanup/buildOutputCleanup.lock
 /build/resources/main/application.yml
 /src/main/resources/application.yml
 CorsConfig.class.uniqueId0

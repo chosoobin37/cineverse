@@ -47,9 +47,12 @@ public class InfoBoardController {
             @PathVariable int infoId) throws JsonProcessingException {
         String utf8Json = new String(infoJson.
                 getBytes(StandardCharsets.ISO_8859_1), StandardCharsets.UTF_8);
+
         ObjectMapper objectMapper = new ObjectMapper();
+
         InfoBoardDTO info = objectMapper.readValue(utf8Json, InfoBoardDTO.class);
         infoBoardService.modifyInfo(infoId, info, images);
+
         return ResponseEntity.ok().build();
     }
 
@@ -74,5 +77,4 @@ public class InfoBoardController {
 
         return info;
     }
-
 }

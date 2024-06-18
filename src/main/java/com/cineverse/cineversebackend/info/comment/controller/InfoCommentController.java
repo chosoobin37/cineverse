@@ -16,8 +16,8 @@ import java.util.List;
 @RequestMapping("/info_comment")
 public class InfoCommentController {
 
-    private InfoCommentService infoCommentService;
-    private ModelMapper modelMapper;
+    private final InfoCommentService infoCommentService;
+    private final ModelMapper modelMapper;
 
     @Autowired
     public InfoCommentController(InfoCommentService infoCommentService, ModelMapper modelMapper) {
@@ -29,6 +29,7 @@ public class InfoCommentController {
     @PostMapping("/regist")
     private ResponseEntity<InfoComment> registInfoComment(@RequestBody InfoCommentDTO infoCommentDTO) {
         modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
+
         InfoComment infoComment = modelMapper.map(infoCommentDTO, InfoComment.class);
         infoCommentService.registInfoComment(infoComment);
 

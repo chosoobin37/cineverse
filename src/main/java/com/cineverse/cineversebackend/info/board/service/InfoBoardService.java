@@ -9,8 +9,6 @@ import java.util.List;
 
 @Service
 public interface InfoBoardService {
-
-
     InfoBoard deleteInfo(int infoId);
 
     List<InfoBoard> findInfoList();

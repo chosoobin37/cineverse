@@ -21,13 +21,11 @@ import java.util.List;
 @RequestMapping(value = "/free_board")
 public class FreeBoardController {
 
-    private FreeBoardService freeBoardService;
-    private ModelMapper modelMapper;
+    private final FreeBoardService freeBoardService;
 
     @Autowired
-    public FreeBoardController(FreeBoardService freeBoardService, ModelMapper modelMapper) {
+    public FreeBoardController(FreeBoardService freeBoardService) {
         this.freeBoardService = freeBoardService;
-        this.modelMapper = modelMapper;
     }
 
     /* 설명. 게시글 작성 */
@@ -37,10 +35,12 @@ public class FreeBoardController {
             @RequestPart(value = "images", required = false) MultipartFile[] images) throws JsonProcessingException {
         String utf8Json = new String(freeBoardJson.
                 getBytes(StandardCharsets.ISO_8859_1), StandardCharsets.UTF_8);
+
         ObjectMapper objectMapper = new ObjectMapper();
-        FreeBoardDTO newBoard = objectMapper.readValue(utf8Json, FreeBoardDTO.class);      // json 문자열 매핑
+        FreeBoardDTO newBoard = objectMapper.readValue(utf8Json, FreeBoardDTO.class);
 
         freeBoardService.registFree(newBoard, images);
+
         return ResponseEntity.status(HttpStatus.CREATED).body(newBoard);
     }
 
@@ -50,12 +50,13 @@ public class FreeBoardController {
     (@RequestPart("free") String freeJson,
      @RequestPart(value = "images", required = false) MultipartFile[] images,
      @PathVariable int freeId) throws JsonProcessingException {
-        String utf8Json = new String(freeJson.
-                getBytes(StandardCharsets.ISO_8859_1), StandardCharsets.UTF_8);
+        String utf8Json = new String(freeJson.getBytes(StandardCharsets.ISO_8859_1), StandardCharsets.UTF_8);
+
         ObjectMapper objectMapper = new ObjectMapper();
         FreeBoardDTO freeBoard = objectMapper.readValue(utf8Json, FreeBoardDTO.class);
 
         freeBoardService.modifyFree(freeId, freeBoard, images);
+
         return ResponseEntity.ok().build();
     }
 

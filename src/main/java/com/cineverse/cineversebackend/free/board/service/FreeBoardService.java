@@ -10,6 +10,7 @@ public interface FreeBoardService {
     void registFree(FreeBoardDTO newBoard, MultipartFile[] images);
 
     FreeBoard modifyFreeDeleteDate(int freeId);
+
     List<FreeBoard> findFreeList();
 
     FreeBoardDTO findFreeById(int freeId);

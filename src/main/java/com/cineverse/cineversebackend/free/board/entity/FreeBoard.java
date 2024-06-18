@@ -42,5 +42,4 @@ public class FreeBoard {
 
     @OneToMany(mappedBy = "free", cascade = CascadeType.ALL)
     private List<Image> images = new ArrayList<>();
-
 }

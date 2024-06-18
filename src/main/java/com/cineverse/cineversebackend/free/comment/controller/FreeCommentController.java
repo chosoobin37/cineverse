@@ -16,8 +16,8 @@ import java.util.List;
 @RequestMapping("/free_comment")
 public class FreeCommentController {
 
-    private FreeCommentService freeCommentService;
-    private ModelMapper modelMapper;
+    private final FreeCommentService freeCommentService;
+    private final ModelMapper modelMapper;
 
     @Autowired
     public FreeCommentController(FreeCommentService freeCommentService, ModelMapper modelMapper) {
@@ -37,13 +37,15 @@ public class FreeCommentController {
 
     /* 설명. 댓글 수정 */
     @PatchMapping("/modify/{freeCommentId}")
-    public ResponseEntity<FreeComment> modifyFreeComment (@RequestBody FreeCommentDTO freeCommentDTO, @PathVariable int freeCommentId) {
+    public ResponseEntity<FreeComment> modifyFreeComment (@RequestBody FreeCommentDTO freeCommentDTO,
+                                                          @PathVariable int freeCommentId) {
         return ResponseEntity.ok(freeCommentService.modifyFreeComment(freeCommentId, freeCommentDTO));
     }
 
     /* 설명. 댓글 삭제 (댓글 삭제일 update) */
     @PatchMapping("/delete/{freeCommentId}")
-    public ResponseEntity<FreeComment> deleteFreeComment (@RequestBody FreeCommentDTO freeCommentDTO, @PathVariable int freeCommentId) {
+    public ResponseEntity<FreeComment> deleteFreeComment (@RequestBody FreeCommentDTO freeCommentDTO,
+                                                          @PathVariable int freeCommentId) {
         return ResponseEntity.ok(freeCommentService.modifyFreeCommentDeleteDate(freeCommentId, freeCommentDTO));
     }
 

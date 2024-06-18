@@ -7,7 +7,10 @@ import java.util.List;
 
 public interface FreeCommentService {
     void registFreeComment(FreeComment freeComment);
+
     FreeComment modifyFreeComment(int freeCommentId, FreeCommentDTO freeCommentDTO);
+
     FreeComment modifyFreeCommentDeleteDate(int freeCommentId, FreeCommentDTO freeCommentDTO);
+
     List<FreeComment> findFreeCommentList();
 }

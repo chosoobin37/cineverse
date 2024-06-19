@@ -21,17 +21,14 @@ import java.util.Optional;
 @Service
 public class QuizServiceImpl implements QuizService {
 
-    private final EventBoardRepository eventBoardRepository;
     private final QuizRepository quizRepository;
     private final QuizSolverRepository quizSolverRepository;
     private final ModelMapper modelMapper;
 
     @Autowired
-    public QuizServiceImpl(EventBoardRepository eventBoardRepository,
-                           QuizRepository quizRepository,
+    public QuizServiceImpl(QuizRepository quizRepository,
                            QuizSolverRepository quizSolverRepository,
                            ModelMapper modelMapper) {
-        this.eventBoardRepository = eventBoardRepository;
         this.quizRepository = quizRepository;
         this.quizSolverRepository = quizSolverRepository;
         this.modelMapper = modelMapper;
@@ -49,7 +46,6 @@ public class QuizServiceImpl implements QuizService {
                 .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 퀴즈입니다."));
 
         QuizSolver quizSolver = new QuizSolver();
-//        quizSolver.setMemberId(quizSolver.getMemberId());
         quizSolver.setMemberId(quizSolverDTO.getMemberId());
         quizSolver.setQuizCorrect(quizSolverDTO.getQuizCorrect());
         quizSolver.setQuiz(quiz);

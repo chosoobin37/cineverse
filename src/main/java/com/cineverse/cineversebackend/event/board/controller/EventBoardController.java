@@ -77,7 +77,7 @@ public class EventBoardController {
         return ResponseEntity.ok().build();
     }
 
-    /* 설명. 퀴즈별 정답률 계산(게시글 조회 안에 넣어야함) */
+    /* 설명. 퀴즈별 정답률 계산 */
     @GetMapping("/correct_rate")
     public ResponseEntity<List<QuizDTO>> getQuizCorrectRates() {
         List<QuizDTO> quizDTOList = quizService.calculateCorrectRate();

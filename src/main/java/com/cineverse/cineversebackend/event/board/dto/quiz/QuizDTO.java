@@ -16,5 +16,4 @@ public class QuizDTO {
     private String quizHint;
     private EventBoard eventBoard;
     private double correctRate;
-//    private List<QuizSolver> quizSolvers = new ArrayList<>();
 }

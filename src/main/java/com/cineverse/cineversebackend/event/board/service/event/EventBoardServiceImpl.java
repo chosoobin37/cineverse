@@ -39,7 +39,6 @@ public class EventBoardServiceImpl implements EventBoardService {
     private final VoteRepository voteRepository;
     private final VoteContentRepository voteContentRepository;
     private final PointService pointService;
-    private EntityManager entityManager;
 
     @Autowired
     public EventBoardServiceImpl(ModelMapper modelMapper,
@@ -79,32 +78,17 @@ public class EventBoardServiceImpl implements EventBoardService {
             quizRepository.save(quiz);
         }
 
-//        if(eventDTO.getVote() != null) {
-//            Vote vote = modelMapper.map(eventDTO.getVote(), Vote.class);
-//            vote.setEventBoard(newEvent);
-//            Vote savedVote = voteRepository.save(vote); // Vote 객체 저장하고 반환된 객체 사용
-//
-//            // VoteContent 객체들에 대해 Vote 참조 설정 및 저장
-//            for (VoteContent content : eventDTO.getVote().getVoteContent()) {
-//                VoteContent voteContent = modelMapper.map(content, VoteContent.class);
-//                voteContent.setVote(savedVote); // 저장된 Vote 객체 참조 설정
-//                voteContentRepository.save(voteContent); // VoteContent 저장
-//            }
-//        }
-
         if (eventDTO.getVote() != null) {
             Vote vote = modelMapper.map(eventDTO.getVote(), Vote.class);
             vote.setEventBoard(newEvent);
 
-            // 먼저 Vote 엔티티를 저장합니다.
             Vote savedVote = voteRepository.save(vote);
 
-            // 이제 각 VoteContent 객체들에 Vote 참조를 설정합니다.
             if (eventDTO.getVote().getVoteContents() != null) {
                 for (VoteContentDTO contentDTO : eventDTO.getVote().getVoteContents()) {
                     VoteContent voteContent = modelMapper.map(contentDTO, VoteContent.class);
                     voteContent.setVote(savedVote);
-                    voteContentRepository.save(voteContent); // 각 VoteContent 엔티티 저장
+                    voteContentRepository.save(voteContent);
                 }
             }
         }

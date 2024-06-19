@@ -8,5 +8,6 @@ import java.util.Optional;
 
 public interface QuizSolverRepository extends JpaRepository<QuizSolver, Integer> {
     List<QuizSolver> findByQuiz_QuizId(int quizId);
+
     Optional<QuizSolver> findByMemberIdAndQuiz_QuizId(int memberId, int quizId);
 }

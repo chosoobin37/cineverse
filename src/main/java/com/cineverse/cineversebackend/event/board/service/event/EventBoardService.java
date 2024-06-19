@@ -15,5 +15,4 @@ public interface EventBoardService {
     List<EventBoard> findEventList();
 
     EventBoardDTO findEventById(int eventId);
-
 }

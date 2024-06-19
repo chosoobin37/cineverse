@@ -19,10 +19,6 @@ public class QuizSolver {
     @Column(name = "member_id")
     private int memberId;
 
-    /* 설명. Quiz 엔티티의 quizId 자동 참조*/
-//    @Column(name = "quiz_id")
-//    private int quizId;
-
     @Column(name = "quiz_correct")
     private String quizCorrect;
 

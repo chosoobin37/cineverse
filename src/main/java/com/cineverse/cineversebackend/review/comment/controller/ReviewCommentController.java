@@ -18,8 +18,8 @@ import java.util.List;
 @RequestMapping("/review_comment")
 public class ReviewCommentController {
 
-    private ReviewCommentService reviewCommentService;
-    private ModelMapper modelMapper;
+    private final ReviewCommentService reviewCommentService;
+    private final ModelMapper modelMapper;
 
     @Autowired
     public ReviewCommentController(ReviewCommentService reviewCommentService, ModelMapper modelMapper) {

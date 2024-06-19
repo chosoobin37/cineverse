@@ -17,6 +17,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/review_board")
 public class ReviewBoardController {
+
     private final ReviewBoardService reviewBoardService;
 
     @Autowired

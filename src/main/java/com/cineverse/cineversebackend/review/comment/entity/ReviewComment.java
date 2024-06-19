@@ -12,7 +12,6 @@ import lombok.*;
 @Entity
 @Table(name="tbl_review_comment")
 public class ReviewComment {
-
     @Id
     @Column(name = "review_comment_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -118,12 +118,11 @@ public class ReviewBoardServiceImpl implements ReviewBoardService{
         }
 
         if (images != null && images.length > 0) {
-            imageService.deleteImagesByReview(reviewBoard); // 기존 이미지 삭제
+            imageService.deleteImagesByReview(reviewBoard);
             for (MultipartFile image : images) {
-                imageService.saveImage(image, reviewBoard); // 새 이미지 저장
+                imageService.saveImage(image, reviewBoard);
             }
         }
-
         reviewBoardRepository.save(reviewBoard);
     }
 
